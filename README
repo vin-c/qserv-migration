@@ -1,0 +1,35 @@
+Description
+-----------
+
+Use this script to synchronize data between qserv hosts at CC-IN2P3 to an
+Openstack infra.
+
+HOWTO ?
+-------
+
+First, fire up an instance and get its uuid.
+Fill in / copy / rename to the "credentials" file (sample provided)
+
+
+./qserv-sync.sh prep 1xx
+-> Will create a cinder volume at destination, connect it to the instance
+-> Then, will partition and format to ext4 and finally mount it to /qserv
+
+./qserv-sync.sh sync 1xx
+-> Will check the mounted volume then connect to an SSH frontend
+-> Then rsync the data from the qserv node (from 100 to 124) to the mounted volume
+
+Other options as {attach|detach} will (un)mount and (dis)connect the specified volume
+
+NOTES
+-----
+
+For now, this is only a hot sync without downtime but on running services (so with lock problems)
+Later, this script may implement a cold sync stopping and restarting service on the fly.
+
+LICENCE
+-------
+
+This script was developped by Vincent Gatignol-Jamon (IdGC/France-Grilles/CNRS) for the LSST project in september 2016.
+
+Licensed under the GPLv3 (see LICENCE)
