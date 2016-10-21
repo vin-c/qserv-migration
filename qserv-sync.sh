@@ -165,6 +165,7 @@ sync() {
         --exclude 'mysql.2*' \
         --exclude 'zookeeper' \
         --exclude 'export*' \
+        --exclude 'qservScratch' \
         -e "ssh -p 9$1" $CCUSER@127.0.0.1:$QSERVDATAPATH $MOUNTDIR/
  
 }
